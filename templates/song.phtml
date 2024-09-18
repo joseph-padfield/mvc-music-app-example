@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8"/>
-    <title>Slim 4</title>
+    <title><?= $song['song_name'] ?></title>
     <link href='//fonts.googleapis.com/css?family=Lato:300' rel='stylesheet' type='text/css'>
     <style>
         body {
@@ -26,10 +26,16 @@
     </style>
 </head>
 <body>
-<h1>Spotify</h1>
-<div>Welcome to Spotify</div>
-    <p>List all the <a href="/artists">artists</a></p>
-    <p>List all the <a href="/albums">albums</a></p>
-    <p>List all the <a href="/songs">songs</a></p>
+
+<h1><?= $song['song_name'] ?></h1>
+<div></div>
+<?php
+
+echo '<h2>' . $song['song_name'] . '</h2>';
+echo '<h2>Length: ' . $song['length'] . '</h2>';
+
+echo "<p>Back to <a href='/'>home</a></p>";
+
+?>
 </body>
 </html>
