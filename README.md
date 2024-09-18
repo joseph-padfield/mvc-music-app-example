@@ -1,25 +1,6 @@
-# Slim Framework 4 Skeleton Application
+# MVC Dependency Injection Example - Music App
 
-Use this skeleton application to quickly setup and start working on a new Slim Framework 4 application. This application uses the latest Slim 4 with Slim PSR-7 implementation and PHP-DI container implementation along with the PHP-View template renderer. It also uses the Monolog logger.
-
-This skeleton application was built for Composer. This makes setting up a new Slim Framework application quick and easy.
-
-## Install the Application
-
-Create a new directory with your project name, e.g:
-
-
-```bash
-mkdir academyProject
-```
-
-Once inside the new directory, clone this repo:
-
-```bash
-git clone git@github.com:Mayden-Academy/slim4-skeleton.git .
-```
-
-One cloned, you must install the slim components by running:
+Install the slim components by running:
 
 ```bash
 composer install
@@ -35,4 +16,34 @@ Run this command in the application directory to run the test suite
 composer test
 ```
 
-That's it! Now go build something cool.
+# Notes
+
+- `dependencies.php` - added   
+````use App\Factories\PDOFactory;````  
+````$container[PDO::class] = DI\factory(PDOFactory::class);````
+
+- `routes.php` - added routes. e.g. of access: ``http://0.0.0.0:8080/courses`` , ``http://0.0.0.0:8080/songs/2``
+````
+	use App\Controllers\AlbumsController;
+	use App\Controllers\SongsController;
+	use App\Controllers\ArtistsController;
+````
+
+````
+    $app->get('/courses', CoursesAPIController::class);
+
+    $app->get('/artists[/{id}]', ArtistsController::class);
+
+    $app->get('/albums[/{id}]', AlbumsController::class);
+
+    $app->get('/songs[/{id}]', SongsController::class);
+````
+
+- `Factories/PDOFactory.php` - contains DB access details
+
+- `/Models` - SQL queries. note PDO injection
+
+- `/Controllers` - calling methods from models to generate data to pass to...
+
+- `/Templates` - rendering data into html. what the user sees
+
